@@ -9,7 +9,7 @@ data class Cell(val x: Int, val y: Int) {
     }
 }
 
-class Map(input: List<String>) {
+class Day06Map(input: List<String>) {
     val data = input.toMutableList()
 
     val width = data[0].length
@@ -98,7 +98,7 @@ enum class Direction() {
 fun main() {
 
     fun part1(input: List<String>): Int {
-        val map = Map(input)
+        val map = Day06Map(input)
         var cell = map.find('^', 'v', 'V', '<', '>') ?: error("No starting location found")
         var direction = Direction.from(map.get(cell))
 
@@ -119,7 +119,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        val map = Map(input)
+        val map = Day06Map(input)
         val startingCell = map.find('^', 'v', 'V', '<', '>') ?: error("No starting location found")
         val startingDirection = Direction.from(map.get(startingCell))
         var cell = startingCell
@@ -143,7 +143,7 @@ fun main() {
 
         // Re-do the trail with the possible obstructions
         return possibleObstructions.count { obstruction ->
-            val possibleMap = Map(input).apply { obstruct(obstruction) }
+            val possibleMap = Day06Map(input).apply { obstruct(obstruction) }
             val possibleSlimeTrail = mutableListOf<Pair<Cell, Direction>>()
             cell = startingCell
             direction = startingDirection
